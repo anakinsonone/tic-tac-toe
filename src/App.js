@@ -1,7 +1,15 @@
 import { useState } from "react";
 import "./App.css";
 
-function App() {
+const Square = ({ value, onSquareClick }) => {
+  return (
+    <button className="square" onClick={onSquareClick}>
+      {value}
+    </button>
+  );
+};
+
+export default function Board() {
   const [squares, setSquares] = useState(Array(9).fill(null));
   const [xIsNext, setXIsNext] = useState(true);
 
@@ -19,39 +27,10 @@ function App() {
     setXIsNext(true);
   };
 
-  const calculateWinner = (squares) => {
-    let list = [
-      [0, 1, 2], // row 1
-      [3, 4, 5], // row 2
-      [6, 7, 8], // row 3
-      [0, 3, 6], // col 1
-      [1, 4, 7], // col 2
-      [2, 5, 8], // col 3
-      [0, 4, 8], // diagonal 1
-      [2, 4, 6], // diagonal 2
-    ];
-
-    for (let i = 0; i < list.length; i++) {
-      const [a, b, c] = list[i];
-      if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c])
-        return squares[a];
-    }
-    return null;
-  };
-
   const winner = calculateWinner(squares);
   let status;
   if (winner) status = "Winner: " + winner + "!";
   else status = "Next player: " + (xIsNext ? "X" : "O");
-
-  // eslint-disable-next-line react/prop-types
-  const Square = ({ value, onSquareClick }) => {
-    return (
-      <button className="square" onClick={onSquareClick}>
-        {value}
-      </button>
-    );
-  };
 
   return (
     <div className="App">
@@ -83,4 +62,22 @@ function App() {
   );
 }
 
-export default App;
+const calculateWinner = (squares) => {
+  let list = [
+    [0, 1, 2], // row 1
+    [3, 4, 5], // row 2
+    [6, 7, 8], // row 3
+    [0, 3, 6], // col 1
+    [1, 4, 7], // col 2
+    [2, 5, 8], // col 3
+    [0, 4, 8], // diagonal 1
+    [2, 4, 6], // diagonal 2
+  ];
+
+  for (let i = 0; i < list.length; i++) {
+    const [a, b, c] = list[i];
+    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c])
+      return squares[a];
+  }
+  return null;
+};
