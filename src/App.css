@@ -7,7 +7,7 @@
 
 body {
   background-color: rgb(23, 23, 23);
-  color: #fff;
+  color: rgb(255, 253, 208);
 }
 
 .container {
@@ -18,7 +18,7 @@ body {
 }
 
 .square {
-  background: #fff;
+  background: rgb(255, 253, 208);
   color: black;
   border: 1px solid #999;
   float: left;
