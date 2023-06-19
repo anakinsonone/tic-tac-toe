@@ -75,7 +75,7 @@ function App() {
         </div>
       </div>
       {winner && (
-        <button className="reset" onClick={handleReset}>
+        <button className="button" onClick={handleReset}>
           Reset
         </button>
       )}
